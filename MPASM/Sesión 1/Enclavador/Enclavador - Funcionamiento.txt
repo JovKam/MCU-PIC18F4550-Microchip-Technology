@@ -1,0 +1,8 @@
+﻿Enclavador - Funcionamiento:
+
+La aplicación determina el funcionamiento del led (RB0), según la secuencia de estados del botón (RD0).
+
+Secuencia: 
+		BOTON ACCIONADO - BOTON SIN ACCIONAR → LED ENCENDIDO
+		BOTON ACCIONADO - BOTON SIN ACCIONAR → LED APAGADO
+

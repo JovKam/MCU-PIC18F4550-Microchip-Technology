@@ -19,18 +19,24 @@
 
     org 0x0020
 
-config_user:			;Configuracion inicial de Puertos
+config_user:			;Configuracion de puertos 
     bcf TRISD, 0		;Puerto RD0 como salida
-
-led_on:
-    btfsc PORTB, 0		;Pregunto si el RB0 es igual a cero
-    goto led_off		;Salta aqui cuando es falso
-    bsf LATD, 0			;Salta aqui cuando es verdadero y pone RD0 a uno
-    goto led_on			;Salta a la etiqueta 'led_on'
+    
+loop:
+    btfss PORTB, 0	    ;El boton (RB0) ha sido presionado?
+    goto loop		    ;No, entonces pregunto de nuevo
+    btfsc PORTD, 0	    ;Si, el led (RD0) esta apagado?
+    goto led_off	    ;No, y salta a led_off
+    bsf LATD, 0		    ;Si, entonces se prende
+    goto button_off
     
 led_off:
-    bcf LATD, 0			;Pone RD0 a uno
-    goto led_on			;Salta a la etiqueta 'led_off'
+    bcf LATD, 0		    ;Apago el led
+    goto button_off
     
-    end		    
+button_off:
+    btfsc PORTB, 0	    ;Se dejo de presionar el boton (RB0)?
+    goto button_off	    ;No, Aun mantengo presionado el boton 
+    goto loop		    ;Si, Repito todo de nuevo
     
+    end
