@@ -1,0 +1,4 @@
+﻿Negador - Funcionamiento:
+
+Boton sin accionar (RD0 = 0) → LED prendido (RB0 = 1)
+Boton accionado (RD0 = 1) → LED apagado (RB0 = 0)
