@@ -1,5 +1,4 @@
-; Codigo hecho por Josué
-; 07 de Setiembre del 2019  
+
     
     list p=18f4550
     #include "p18f4550.inc"
@@ -23,20 +22,14 @@ config_user:			;Configuracion de puertos
     bcf TRISD, 0		;Puerto RD0 como salida
     
 loop:
-    btfss PORTB, 0	    ;El boton (RB0) ha sido presionado?
-    goto loop		    ;No, entonces pregunto de nuevo
-    btfsc PORTD, 0	    ;Si, el led (RD0) esta apagado?
-    goto led_off	    ;No, y salta a led_off
-    bsf LATD, 0		    ;Si, entonces se prende
-    goto button_off
-    
-led_off:
-    bcf LATD, 0		    ;Apago el led
-    goto button_off
-    
-button_off:
-    btfsc PORTB, 0	    ;Se dejo de presionar el boton (RB0)?
-    goto button_off	    ;No, Aun mantengo presionado el boton 
+    bcf LATD, 0	    ;Apago el led
+    bcf LATD, 1	 
+    bcf LATD, 2	 
+    bcf LATD, 3	 
+    bcf LATD, 4	 
+    bcf LATD, 5	 
+    bcf LATD, 6	 
+
     goto loop		    ;Si, Repito todo de nuevo
     
     end
